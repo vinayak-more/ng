@@ -1,4 +1,4 @@
-import { Component,ViewChild, VERSION } from '@angular/core';
+import { Component,ViewChild, VERSION, OnInit } from '@angular/core';
 import { ZXingScannerComponent } from '@zxing/ngx-scanner';
 
 @Component({
@@ -6,7 +6,7 @@ import { ZXingScannerComponent } from '@zxing/ngx-scanner';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'qrscanner';
   ngVersion;
 
@@ -26,16 +26,7 @@ export class AppComponent {
             this.hasCameras = true;
 
             console.log('Devices: ', devices);
-            this.availableDevices = devices;
-
-            // selects the devices's back camera by default
-            // for (const device of devices) {
-            //     if (/back|rear|environment/gi.test(device.label)) {
-            //         this.scanner.changeDevice(device);
-            //         this.selectedDevice = device;
-            //         break;
-            //     }
-            // }
+            this.availableDevices = devices;            
         });
 
         this.scanner.camerasNotFound.subscribe((devices: MediaDeviceInfo[]) => {
